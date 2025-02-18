@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>IoT</title>
+
+		<!-- Site favicon -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="vendors/images/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="vendors/images/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="vendors/images/favicon-16x16.png"
+		/>
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendors/styles/icon-font.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="src/plugins/datatables/css/dataTables.bootstrap4.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="src/plugins/datatables/css/responsive.bootstrap4.min.css"
+		/>
+		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
+		></script>
+		<script
+			async
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
+			crossorigin="anonymous"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-GBZ3SGGX85");
+		</script>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body>
+		<div class="header">
+			<div class="header-left">
+				<div class="menu-icon bi bi-list"></div>
+				<div
+					class="search-toggle-icon bi bi-search"
+					data-toggle="header_search"
+				></div>
+
+			</div>
+			<div class="header-right">
+				<div class="user-notification">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle no-arrow"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<i class="icon-copy dw dw-notification"></i>
+							<span class="badge notification-active"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<div class="notification-list mx-h-350 customscroll">
+								<ul>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="user-info-dropdown">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<span class="user-icon">
+								<img src="vendors/images/photo1.jpg" alt="" />
+							</span>
+							<span class="user-name">Chang Kieu</span>
+						</a>
+						<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list "
+						>
+							<a class="dropdown-item" href="profiles.html"
+								><i class="dw dw-user1"></i> Profile</a
+							>
+							<a class="dropdown-item" href="login.html"
+								><i class="dw dw-logout"></i> Log Out</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="left-side-bar">
+			<div class="brand-logo">
+				<a href="dashboard.html">
+					<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
+					<img
+						src="vendors/images/deskapp-logo-white.svg"
+						alt=""
+						class="light-logo"
+					/>
+				</a>
+				<div class="close-sidebar" data-toggle="left-sidebar-close">
+					<i class="ion-close-round"></i>
+				</div>
+			</div>
+			<div class="menu-block customscroll">
+				<div class="sidebar-menu">
+					<ul id="accordion-menu">
+						<li class="dropdown">
+							<a href="dashboard.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-house"></span
+								><span class="mtext">Trang chủ</span>
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="history.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-receipt-cutoff"></span
+								><span class="mtext">Lịch sử</span>
+							</a>
+						</li>
+                        <li class="dropdown">
+							<a href="data.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-table"></span
+								><span class="mtext">Dữ liệu</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="main-container">
+			<div class="pd-ltr-20 xs-pd-20-10">
+				<div class="min-height-200px">
+					<!-- Simple Datatable start -->
+					<div class="card-box mb-30">
+						<div class="pd-20">
+							<h4 class="text-blue h4">Dữ liệu cảm biến</h4>
+						</div>
+                        <div class="row mb-3 d-flex justify-content-end">
+                            <div class="col-md-3">
+                                <select id="searchFilter" class="form-control">
+                                    <option value="all">Tất cả</option>
+                                    <option value="2">Độ ẩm (%)</option>
+                                    <option value="3">Nhiệt độ (°C)</option>
+                                    <option value="4">Ánh sáng (Lux)</option>
+                                    <option value="5">Thời gian</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Nhập từ khóa...">
+                            </div>
+                        </div>
+                        
+                        
+						<div class="pb-20">
+							<table class="data-table table stripe hover nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="table-plus datatable-nosort">ID</th>
+                                        <th>Thông tin</th>
+                                        <th>Độ ẩm (%)</th>
+                                        <th>Nhiệt độ (°C)</th>
+                                        <th>Ánh sáng (Lux)</th>
+                                        <th>Thời gian</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>A001</td><td>Cảm biến 1</td><td>55</td><td>24</td><td>300</td><td>01/02/2024</td></tr>
+                                    <tr><td>A002</td><td>Cảm biến 2</td><td>60</td><td>23</td><td>320</td><td>01/02/2024</td></tr>
+                                    <tr><td>A003</td><td>Cảm biến 3</td><td>58</td><td>22</td><td>290</td><td>01/02/2024</td></tr>
+                                    <tr><td>A004</td><td>Cảm biến 4</td><td>52</td><td>25</td><td>310</td><td>01/02/2024</td></tr>
+                            
+                                    <tr><td>A005</td><td>Cảm biến 1</td><td>57</td><td>23</td><td>280</td><td>02/02/2024</td></tr>
+                                    <tr><td>A006</td><td>Cảm biến 2</td><td>63</td><td>22</td><td>310</td><td>02/02/2024</td></tr>
+                                    <tr><td>A007</td><td>Cảm biến 3</td><td>59</td><td>23</td><td>305</td><td>02/02/2024</td></tr>
+                                    <tr><td>A008</td><td>Cảm biến 4</td><td>56</td><td>24</td><td>295</td><td>02/02/2024</td></tr>
+                            
+                                    <tr><td>A009</td><td>Cảm biến 1</td><td>60</td><td>25</td><td>315</td><td>03/02/2024</td></tr>
+                                    <tr><td>A010</td><td>Cảm biến 2</td><td>62</td><td>24</td><td>325</td><td>03/02/2024</td></tr>
+                                    <tr><td>A011</td><td>Cảm biến 3</td><td>54</td><td>22</td><td>285</td><td>03/02/2024</td></tr>
+                                    <tr><td>A012</td><td>Cảm biến 4</td><td>58</td><td>23</td><td>295</td><td>03/02/2024</td></tr>
+                            
+                                    <tr><td>A013</td><td>Cảm biến 1</td><td>55</td><td>24</td><td>305</td><td>04/02/2024</td></tr>
+                                    <tr><td>A014</td><td>Cảm biến 2</td><td>61</td><td>26</td><td>320</td><td>04/02/2024</td></tr>
+                                    <tr><td>A015</td><td>Cảm biến 3</td><td>57</td><td>23</td><td>290</td><td>04/02/2024</td></tr>
+                                    <tr><td>A016</td><td>Cảm biến 4</td><td>60</td><td>25</td><td>310</td><td>04/02/2024</td></tr>
+                            
+                                    <tr><td>A017</td><td>Cảm biến 1</td><td>59</td><td>24</td><td>300</td><td>05/02/2024</td></tr>
+                                    <tr><td>A018</td><td>Cảm biến 2</td><td>62</td><td>22</td><td>280</td><td>05/02/2024</td></tr>
+                                    <tr><td>A019</td><td>Cảm biến 3</td><td>54</td><td>23</td><td>290</td><td>05/02/2024</td></tr>
+                                    <tr><td>A020</td><td>Cảm biến 4</td><td>56</td><td>24</td><td>295</td><td>05/02/2024</td></tr>
+                            
+                                    <tr><td>A021</td><td>Cảm biến 1</td><td>60</td><td>25</td><td>310</td><td>06/02/2024</td></tr>
+                                    <tr><td>A022</td><td>Cảm biến 2</td><td>58</td><td>22</td><td>280</td><td>06/02/2024</td></tr>
+                                    <tr><td>A023</td><td>Cảm biến 3</td><td>55</td><td>23</td><td>300</td><td>06/02/2024</td></tr>
+                                    <tr><td>A024</td><td>Cảm biến 4</td><td>61</td><td>24</td><td>315</td><td>06/02/2024</td></tr>
+                                </tbody>
+                            </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- js -->
+		<script src="vendors/scripts/core.js"></script>
+		<script src="vendors/scripts/script.min.js"></script>
+		<script src="vendors/scripts/process.js"></script>
+		<script src="vendors/scripts/layout-settings.js"></script>
+		<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+		<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+		<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+		<!-- buttons for Export datatable -->
+		<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
+		<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
+		<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+		<!-- Datatable Setting js -->
+		<script src="vendors/scripts/datatable-setting.js"></script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+</html>
