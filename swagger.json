@@ -1,0 +1,217 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Device API",
+      "version": "1.0.0",
+      "description": "API for managing IoT devices and sensor data"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/get_latest_data": {
+        "get": {
+          "summary": "Lấy dữ liệu cảm biến mới nhất",
+          "description": "Trả về giá trị độ ẩm (humidity), nhiệt độ (temperature), và ánh sáng (light) mới nhất từ bảng device_data.",
+          "responses": {
+            "200": {
+              "description": "Dữ liệu cảm biến mới nhất",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "humidity": { "type": "number" },
+                  "temperature": { "type": "number" },
+                  "light": { "type": "integer" }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "/get_list_data": {
+        "get": {
+          "summary": "Lấy dữ liệu cho biểu đồ",
+          "description": "Trả về 12 giá trị độ ẩm (humidity), nhiệt độ (temperature), ánh sáng (light), và thời gian ghi nhận (recorded_at) từ bảng device_data.",
+          "responses": {
+            "200": {
+              "description": "Danh sách dữ liệu cảm biến",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "humidity": { "type": "number" },
+                    "temperature": { "type": "number" },
+                    "light": { "type": "integer" },
+                    "recorded_at": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/get_sensor_data": {
+      "get": {
+        "summary": "Lấy dữ liệu cho trang data sensor",
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Số dòng",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "Trang số?",
+            "required": false,
+            "type": "integer",
+            "default": 1
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Từ khóa tìm kiếm",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search_field",
+            "in": "query",
+            "description": "Lọc dữ liệu theo trường cụ thể (temperature, humidity, light, all)",
+            "required": false,
+            "type": "string",
+            "enum": ["temperature", "humidity", "light", "all"],
+            "default": "all"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Cột sắp xếp (temperature, humidity, light, recorded_at), có thể không có",
+            "required": false,
+            "type": "string",
+            "enum": ["temperature", "humidity", "light", "recorded_at", null],
+            "default": null
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "description": "Sắp xếp tăng (ASC) hoặc giảm (DESC)",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "default": "DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Danh sách dữ liệu cảm biến",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page_size": { "type": "integer" },
+                "page_number": { "type": "integer" },
+                "search": { "type": "string" },
+                "search_field": { "type": "string" },
+                "sort_by": { "type": "string", "nullable": true },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "humidity": { "type": "number" },
+                      "temperature": { "type": "number" },
+                      "light": { "type": "integer" },
+                      "recorded_at": { "type": "string", "format": "date-time" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_devices": {
+      "get": {
+        "summary": "Lấy dữ liệu cho trang history",
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Số dòng",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "Trang số?",
+            "required": false,
+            "type": "integer",
+            "default": 1
+          },
+          {
+            "name": "search_time",
+            "in": "query",
+            "description": "Tìm kiếm theo ngày",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Sắp xếp theo cột (id, name, status, last_changed_at)",
+            "required": false,
+            "type": "string",
+            "enum": ["id", "name", "status", "last_changed_at"],
+            "default": "last_changed_at"
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "description": "Sắp xếp tăng (ASC) hoặc giảm (DESC)",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "default": "DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Danh sách devices",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page_size": { "type": "integer" },
+                "page_number": { "type": "integer" },
+                "search_time": { "type": "string", "format": "date" },
+                "sort_by": { "type": "string" },
+                "sort_order": { "type": "string" },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name": { "type": "string" },
+                      "status": { "type": "integer" },
+                      "last_changed_at": { "type": "string", "format": "date-time" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    }
+  }
+  
