@@ -51,11 +51,16 @@ app.get("/get_sensor_data", async (req, res) => {
               whereClause = `WHERE CAST(humidity AS CHAR) LIKE '%${search}%'`;
           } else if (search_field === "light") {
               whereClause = `WHERE CAST(light AS CHAR) LIKE '%${search}%'`;
-          } else {
+          } 
+          else if (search_field === "recorded_at") {
+            whereClause = `WHERE recorded_at = '${search}'`;
+        } 
+          else {
               whereClause = `WHERE 
                   CAST(temperature AS CHAR) LIKE '%${search}%' OR 
                   CAST(humidity AS CHAR) LIKE '%${search}%' OR 
-                  CAST(light AS CHAR) LIKE '%${search}%'`;
+                  CAST(light AS CHAR) LIKE '%${search}%' OR
+                  CAST(humidity AS CHAR) LIKE '%${search}%' `;
           }
       }
 

@@ -85,7 +85,7 @@
             "description": "Lọc dữ liệu theo trường cụ thể (temperature, humidity, light, all)",
             "required": false,
             "type": "string",
-            "enum": ["temperature", "humidity", "light", "all"],
+            "enum": ["temperature", "humidity", "light", "recorded_at","all"],
             "default": "all"
           },
           {
