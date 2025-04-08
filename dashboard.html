@@ -194,7 +194,7 @@
                         <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">24°C</div>
+                                    <div class="weight-700 font-24 text-dark" id="temperature">24°C</div>
                                     <div class="font-14 text-secondary weight-500">Nhiệt độ</div>
                                 </div>
                                 <div class="widget-icon">
@@ -209,7 +209,7 @@
                         <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">65%</div>
+                                    <div class="weight-700 font-24 text-dark" id="humidity">65%</div>
                                     <div class="font-14 text-secondary weight-500">Độ ẩm</div>
                                 </div>
                                 <div class="widget-icon">
@@ -224,7 +224,7 @@
                         <div class="card-box height-100-p widget-style3">
                             <div class="d-flex flex-wrap">
                                 <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark">450 lux</div>
+                                    <div class="weight-700 font-24 text-dark" id="light">450 lux</div>
                                     <div class="font-14 text-secondary weight-500">Ánh sáng</div>
                                 </div>
                                 <div class="widget-icon">
@@ -247,45 +247,73 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-20 d-flex flex-column">
-                        <div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #f1c40f; height: 120px;">
-                            <div class="d-flex align-items-center">
-                                <div class="icon h1 text-white mr-3">
-                                    <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-white font-16"style="margin-left: 10px;">Đèn</div>
-                            </div>
-                            <label class="switch">
-                                <input type="checkbox" id="light-toggle">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                        
-                        <div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #2ecc71; height: 120px;">
-                            <div class="d-flex align-items-center">
-                                <div class="icon h1 text-white mr-3">
-                                    <i class="bi bi-fan" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-white font-16">Quạt</div>
-                            </div>
-                            <label class="switch">
-                                <input type="checkbox" id="fan-toggle">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                        
-                        <div class="card-box pd-20 d-flex align-items-center justify-content-between" style="background-color: #3498db; height: 120px;">
-                            <div class="d-flex align-items-center">
-                                <div class="icon h1 text-white mr-3">
-                                    <i class="fa fa-snowflake-o" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-white font-16"style="margin-left: 5px;">Điều hòa</div>
-                            </div>
-                            <label class="switch">
-                                <input type="checkbox" id="ac-toggle">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                    </div>
+						<div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #f1c40f; height: 120px;">
+							<div class="d-flex align-items-center">
+								<div class="icon h1 text-white mr-3">
+									<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+								</div>
+								<div class="text-white font-16" style="margin-left: 10px;">Đèn <span id="led-count"></span></div> <!-- Hiển thị số lần bật tắt ở đây -->
+							</div>
+							<label class="switch">
+								<input type="checkbox" id="light-toggle">
+								<span class="slider round"></span>
+							</label>
+						</div>
+						
+						<div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #2ecc71; height: 120px;">
+							<div class="d-flex align-items-center">
+								<div class="icon h1 text-white mr-3">
+									<i class="bi bi-fan" aria-hidden="true"></i>
+								</div>
+								<div class="text-white font-16">Quạt <span id="fan-count"></span></div> <!-- Hiển thị số lần bật tắt ở đây -->
+							</div>
+							<label class="switch">
+								<input type="checkbox" id="fan-toggle">
+								<span class="slider round"></span>
+							</label>
+						</div>
+						
+						<div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #3498db; height: 120px;">
+							<div class="d-flex align-items-center">
+								<div class="icon h1 text-white mr-3">
+									<i class="fa fa-snowflake-o" aria-hidden="true"></i>
+								</div>
+								<div class="text-white font-16" style="margin-left: 5px;">Điều hòa <span id="ac-count"></span></div> <!-- Hiển thị số lần bật tắt ở đây -->
+							</div>
+							<label class="switch">
+								<input type="checkbox" id="ac-toggle">
+								<span class="slider round"></span>
+							</label>
+						</div>
+
+						<!-- <div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #9b59b6; height: 120px;">
+							<div class="d-flex align-items-center">
+								<div class="icon h1 text-white mr-3">
+									<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+								</div>
+								<div class="text-white font-16" style="margin-left: 10px;">LED4 <span id="led4-count"></span></div>
+							</div>
+							<label class="switch">
+								<input type="checkbox" id="led4-toggle">
+								<span class="slider round"></span>
+							</label>
+						</div>
+
+						<div class="card-box pd-20 d-flex align-items-center justify-content-between" style="background-color: #e67e22; height: 120px;">
+							<div class="d-flex align-items-center">
+								<div class="icon h1 text-white mr-3">
+									<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+								</div>
+								<div class="text-white font-16" style="margin-left: 10px;">LED5 <span id="led5-count"></span></div>
+							</div>
+							<label class="switch">
+								<input type="checkbox" id="led5-toggle">
+								<span class="slider round"></span>
+							</label>
+						</div> -->
+
+					</div>
+					
                 </div>
                 
 
@@ -304,8 +332,6 @@
 		<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 		<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 		<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-		<script src="vendors/scripts/dashboard3.js"></script>
-		<!-- Google Tag Manager (noscript) -->
 		<noscript
 			><iframe
 				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
@@ -314,6 +340,168 @@
 				style="display: none; visibility: hidden"
 			></iframe
 		></noscript>
-		<!-- End Google Tag Manager (noscript) -->
+		<script>
+			function updateSensorData() {
+				fetch('http://localhost:3000/get_latest_data')
+					.then(response => response.json())
+					.then(data => {
+						document.getElementById('temperature').innerText = data.temperature + "°C";
+						document.getElementById('humidity').innerText = data.humidity + "%";
+						document.getElementById('light').innerText = data.light + " lux";
+					})
+					.catch(error => console.error('Error fetching data:', error));
+			}
+			
+			updateSensorData();
+			
+			setInterval(updateSensorData, 2000);
+
+			function controlDevice(led, state) {
+				fetch('http://localhost:3000/control_led', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ led: led, state: state })
+				})
+				.then(response => response.json())
+				.then(data => {
+					console.log('✅ Điều khiển thành công:', data.message);
+				})
+			}
+
+			document.getElementById('light-toggle').addEventListener('change', function () {
+				const state = this.checked ? 'ON' : 'OFF';
+				controlDevice('led1', state);
+			});
+
+			document.getElementById('fan-toggle').addEventListener('change', function () {
+				const state = this.checked ? 'ON' : 'OFF';
+				controlDevice('led2', state);
+			});
+
+			document.getElementById('ac-toggle').addEventListener('change', function () {
+				const state = this.checked ? 'ON' : 'OFF';
+				controlDevice('led3', state);
+			});
+			// document.getElementById('led4-toggle').addEventListener('change', function () {
+			// 	const state = this.checked ? 'ON' : 'OFF';
+			// 	controlDevice('led4', state);
+			// });
+			// document.getElementById('led5-toggle').addEventListener('change', function () {
+			// 	const state = this.checked ? 'ON' : 'OFF';
+			// 	controlDevice('led5', state);
+			// });
+
+		let chart; 
+
+		function fetchAndUpdateChart() {
+			fetch('http://localhost:3000/get_list_data')
+			.then(response => response.json())
+			.then(data => {
+				const reversedData = data.slice().reverse();
+
+				const temperatures = reversedData.map(item => item.temperature);
+				const humidities = reversedData.map(item => item.humidity);
+				const lights = reversedData.map(item => item.light);
+				const times = reversedData.map(item => {
+				const date = new Date(item.recorded_at);
+				const hours = date.getHours().toString().padStart(2, '0');
+				const minutes = date.getMinutes().toString().padStart(2, '0');
+				return `${hours}:${minutes}`;
+				});
+
+				const options = {
+				series: [
+					{ name: "Nhiệt độ (°C)", data: temperatures },
+					{ name: "Độ ẩm (%)", data: humidities },
+					{ name: "Ánh sáng (lux)", data: lights }
+				],
+				chart: {
+					height: 300,
+					type: 'line',
+					zoom: { enabled: false },
+					dropShadow: {
+					enabled: true,
+					color: '#000',
+					top: 10,
+					left: 5,
+					blur: 10,
+					opacity: 0.2
+					},
+					toolbar: { show: false }
+				},
+				colors: ['#ff5733', '#3498db', '#f1c40f'],
+				dataLabels: { enabled: false },
+				stroke: { width: [3, 3, 3], curve: 'smooth' },
+				grid: { show: false },
+				markers: {
+					colors: ['#ff5733', '#3498db', '#f1c40f'],
+					size: 5,
+					strokeColors: '#ffffff',
+					strokeWidth: 2,
+					hover: { sizeOffset: 2 }
+				},
+				xaxis: {
+					categories: times,
+					labels: {
+					style: { colors: '#8c9094' }
+					}
+				},
+				yaxis: {
+					labels: {
+					style: { colors: '#8c9094' }
+					}
+				},
+				legend: {
+					position: 'top',
+					horizontalAlign: 'right',
+					floating: true,
+					offsetY: 0,
+					labels: { useSeriesColors: true },
+					markers: { width: 10, height: 10 }
+				}
+				};
+
+				if (!chart) {
+				// Nếu chưa khởi tạo, tạo mới
+				chart = new ApexCharts(document.querySelector("#activities-chart"), options);
+				chart.render();
+				} else {
+				// Nếu đã có chart, cập nhật dữ liệu
+				chart.updateOptions(options);
+				}
+			})
+			.catch(error => console.error('Lỗi khi lấy dữ liệu từ API:', error));
+		}
+
+		// Lần đầu chạy
+		fetchAndUpdateChart();
+
+		// Cập nhật mỗi 2 giây
+		setInterval(fetchAndUpdateChart, 2000);
+
+		function getLedCounts() {
+        fetch('http://localhost:3000/get_led_counts')
+            .then(response => response.json())
+            .then(data => {
+
+                document.getElementById('led-count').textContent = `(${data.led1Count})`;
+                document.getElementById('fan-count').textContent = `(${data.led2Count})`;
+                document.getElementById('ac-count').textContent = `(${data.led3Count})`;
+				// document.getElementById('led4-count').textContent = `(${data.led4Count})`;
+				// document.getElementById('led5-count').textContent = `(${data.led5Count})`;
+            })
+            .catch(error => {
+                console.error('Có lỗi xảy ra khi lấy dữ liệu: ', error);
+            });
+    }
+
+    // Gọi API khi tải trang xong
+    getLedCounts();
+
+    // Gọi API sau mỗi khoảng thời gian nếu cần cập nhật liên tục (ví dụ: mỗi 5 giây)
+    setInterval(getLedCounts, 5000);
+			</script>
 	</body>
 </html>
