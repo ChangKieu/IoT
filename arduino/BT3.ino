@@ -2,14 +2,14 @@
 #include <ESP8266WebServer.h>
 #include <PubSubClient.h>
 #include <DHT.h>
-#include <ArduinoJson.h>
+#include <ArduinoJson.h> 
 
 // WiFi credentials
-const char* ssid = "180ml";
-const char* password = "XoAi@LaC@26703";
+const char* ssid = "Chang Kiều";
+const char* password = "changkieune";
 
 // MQTT broker details
-const char* mqtt_server = "192.168.1.198";
+const char* mqtt_server = "192.168.176.87";
 const int mqtt_port = 1889;
 const char* mqtt_user = "trinhkieutrang";
 const char* mqtt_pass = "tkt123";
@@ -33,6 +33,7 @@ DHT dht(DHTPIN, DHTTYPE);
 // Control variables
 bool sendData = true;
 unsigned long lastSend = 0;
+bool isWindHigh = false;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -43,16 +44,25 @@ void readSensorsAndPublish() {
   int lightDigital = digitalRead(LIGHT_SENSOR_DO);
   int lightAnalog = analogRead(LIGHT_SENSOR_AO);  // Range: 0 - 1023
 
+  int dust = random(0, 101);       
+  int wind = random(0, 101);
   if (isnan(temperature) || isnan(humidity)) {
     Serial.println("❌ Failed to read sensors!");
     return;
   }
-
+  if (wind > 60) {
+    isWindHigh = true;
+  } else {
+    isWindHigh = false;
+    digitalWrite(LED4, LOW); 
+  }
   DynamicJsonDocument doc(256);
   doc["temperature"] = temperature;
   doc["humidity"] = humidity;
   doc["light"] = lightAnalog;
   doc["light_status"] = (lightDigital == 0) ? "Bright" : "Dark";
+  doc["dust"] = dust;
+  doc["wind"] = wind;
   doc["timestamp"] = millis();
 
   char jsonBuffer[256];
@@ -122,6 +132,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
     if (doc.containsKey("led3")) digitalWrite(LED3, doc["led3"] == "ON" ? HIGH : LOW);
     if (doc.containsKey("led4")) digitalWrite(LED4, doc["led4"] == "ON" ? HIGH : LOW);
     if (doc.containsKey("led5")) digitalWrite(LED5, doc["led5"] == "ON" ? HIGH : LOW);
+
+
   }
 }
 
@@ -153,22 +165,15 @@ void loop() {
     readSensorsAndPublish();
     lastSend = millis();
   }
-  // int lightAnalog = analogRead(LIGHT_SENSOR_AO);
-  // static bool wasBright = false;
-
-  // if (lightAnalog > 10 && !wasBright) {
-  //   Serial.println("🌞 Ánh sáng lớn hơn 10 → nhấp nháy LED!");
-  //   blinkLED(LED1, 3);  
-  //   wasBright = true;
-  // } else if (lightAnalog <= 10) {
-  //   wasBright = false;
-  // }
+  if (isWindHigh) {
+    blinkLED(LED4, 1); 
+  }
 }
 void blinkLED(int pin, int times) {
   for (int i = 0; i < times; i++) {
     digitalWrite(pin, HIGH);
-    delay(200);
+    delay(200); 
     digitalWrite(pin, LOW);
-    delay(200);
+    delay(200);  
   }
 }

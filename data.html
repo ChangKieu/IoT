@@ -202,7 +202,9 @@
                                     <option value="2">Độ ẩm (%)</option>
                                     <option value="3">Nhiệt độ (°C)</option>
                                     <option value="4">Ánh sáng (Lux)</option>
-                                    <option value="5">Thời gian</option>
+									<option value="5">Độ bụi (µg/m³)</option>
+									<option value="6">Tốc độ gió (km/h)</option>
+                                    <option value="7">Thời gian</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -215,13 +217,15 @@
 							<table class="data-table table stripe hover nowrap">
                                 <thead>
 									<tr>
-									   <th>ID</th>
-									   <th>Độ ẩm (%)</th>
-									   <th>Nhiệt độ (°C)</th>
-									   <th>Ánh sáng (Lux)</th>
-									   <th>Thời gian</th> 
+									  <th>ID</th>
+									  <th>Độ ẩm (%)</th>
+									  <th>Nhiệt độ (°C)</th>
+									  <th>Ánh sáng (Lux)</th>
+									  <th>Độ bụi (µg/m³)</th>
+									  <th>Tốc độ gió (km/h)</th>
+									  <th>Thời gian</th>
 									</tr>
-								 </thead>
+								  </thead>
                                 <tbody>
 									
 								</tbody>
@@ -273,26 +277,23 @@
 				},
 			});
 
-			// Hàm lấy dữ liệu và cập nhật bảng
 			function loadTableData() {
-				fetch('http://localhost:3000/get_sensor_datas') // Thay thế bằng API URL đúng
+				fetch('http://localhost:3000/get_sensor_datas') 
 					.then(response => response.json())
 					.then(data => {
-						// Làm mới bảng: Xóa dữ liệu cũ
 						table.clear();
-
-						// Lặp qua mảng dữ liệu và thêm vào bảng
 						data.forEach(item => {
 							table.row.add([
 								item.id, 
 								item.humidity, 
 								item.temperature,  
-								item.light, 
+								item.light,
+								item.dust,
+								item.wind, 
 								item.recorded_at  
 							]);
 						});
 
-						// Vẽ lại bảng với dữ liệu mới
 						table.draw();
 					})
 					.catch(error => {

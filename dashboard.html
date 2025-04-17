@@ -190,63 +190,108 @@
 				</div>
 
 				<div class="row pb-10">
-                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
-                            <div class="d-flex flex-wrap">
-                                <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark" id="temperature">24°C</div>
-                                    <div class="font-14 text-secondary weight-500">Nhiệt độ</div>
-                                </div>
-                                <div class="widget-icon">
-                                    <div class="icon" data-color="#ff5733">
-                                        <i class="fa fa-thermometer-half" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
-                            <div class="d-flex flex-wrap">
-                                <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark" id="humidity">65%</div>
-                                    <div class="font-14 text-secondary weight-500">Độ ẩm</div>
-                                </div>
-                                <div class="widget-icon">
-                                    <div class="icon" data-color="#3498db">
-                                        <i class="fa fa-tint" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
-                            <div class="d-flex flex-wrap">
-                                <div class="widget-data">
-                                    <div class="weight-700 font-24 text-dark" id="light">450 lux</div>
-                                    <div class="font-14 text-secondary weight-500">Ánh sáng</div>
-                                </div>
-                                <div class="widget-icon">
-                                    <div class="icon" data-color="#f1c40f">
-                                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark" id="temperature"></div>
+									<div class="font-14 text-secondary weight-500">Nhiệt độ</div>
+								</div>
+								<div class="widget-icon">
+									<div class="icon" data-color="#ff5733">
+										<i class="fa fa-thermometer-half" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark" id="humidity"></div>
+									<div class="font-14 text-secondary weight-500">Độ ẩm</div>
+								</div>
+								<div class="widget-icon">
+									<div class="icon" data-color="#3498db">
+										<i class="fa fa-tint" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3" >
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark" id="light"></div>
+									<div class="font-14 text-secondary weight-500">Ánh sáng</div>
+								</div>
+								<div class="widget-icon">
+									<div class="icon" data-color="#f1c40f">
+										<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark" id="dust"></div>
+									<div class="font-14 text-secondary weight-500">Độ bụi</div>
+								</div>
+								<div class="widget-icon">
+									<div class="icon" data-color="#8e44ad">
+										<i class="fa fa-cloud" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3" id="light-box">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark" id="wind"></div>
+									<div class="font-14 text-secondary weight-500">Tốc độ gió</div>
+								</div>
+								<div class="widget-icon">
+									<div class="icon" data-color="#1abc9c">
+										<i class="fa fa-cloud" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
 
 				<div class="row pb-10">
-                    <div class="col-md-9 mb-20">
-                        <div class="card-box height-100-p pd-20">
-                            <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
-                                <div class="h5 mb-md-0">Biểu đồ</div>
-                            </div>
-                            <div id="activities-chart"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-20 d-flex flex-column">
+					<!-- Biểu đồ 1 (Activities Chart) -->
+					<div class="col-md-4 mb-20">
+						<div class="card-box height-100-p pd-20">
+							<div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
+								<div class="h5 mb-md-0">Biểu đồ</div>
+							</div>
+							<div id="activities-chart"></div> 
+						</div>
+					</div>
+				
+					<!-- Biểu đồ 2 (Wind và Dust Chart) -->
+					<div class="col-md-4 mb-20">
+						<div class="card-box height-100-p pd-20">
+							<div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
+								<div class="h5 mb-md-0">Biểu đồ Wind và Dust</div>
+							</div>
+							<div id="wind-dust-chart"></div> 
+						</div>
+					</div>
+					
+					<!-- Bảng điều khiển (Quạt, Điều hòa, Đèn) -->
+					<div class="col-md-4 mb-20 d-flex flex-column">
 						<div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #f1c40f; height: 120px;">
 							<div class="d-flex align-items-center">
 								<div class="icon h1 text-white mr-3">
@@ -285,36 +330,9 @@
 								<span class="slider round"></span>
 							</label>
 						</div>
-
-						<!-- <div class="card-box pd-20 d-flex align-items-center justify-content-between mb-10" style="background-color: #9b59b6; height: 120px;">
-							<div class="d-flex align-items-center">
-								<div class="icon h1 text-white mr-3">
-									<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-								</div>
-								<div class="text-white font-16" style="margin-left: 10px;">LED4 <span id="led4-count"></span></div>
-							</div>
-							<label class="switch">
-								<input type="checkbox" id="led4-toggle">
-								<span class="slider round"></span>
-							</label>
-						</div>
-
-						<div class="card-box pd-20 d-flex align-items-center justify-content-between" style="background-color: #e67e22; height: 120px;">
-							<div class="d-flex align-items-center">
-								<div class="icon h1 text-white mr-3">
-									<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-								</div>
-								<div class="text-white font-16" style="margin-left: 10px;">LED5 <span id="led5-count"></span></div>
-							</div>
-							<label class="switch">
-								<input type="checkbox" id="led5-toggle">
-								<span class="slider round"></span>
-							</label>
-						</div> -->
-
 					</div>
-					
-                </div>
+				</div>
+				
                 
 
 			</div>
@@ -348,6 +366,16 @@
 						document.getElementById('temperature').innerText = data.temperature + "°C";
 						document.getElementById('humidity').innerText = data.humidity + "%";
 						document.getElementById('light').innerText = data.light + " lux";
+						document.getElementById('dust').innerText = data.dust + " µg/m³";
+						document.getElementById('wind').innerText = data.wind + " km/h";
+						const lightBox = document.getElementById('light-box');
+
+					// Kiểm tra ánh sáng
+					if (parseFloat(data.wind) > 50) {
+						lightBox.classList.add('blink-red');
+					} else {
+						lightBox.classList.remove('blink-red');
+					}
 					})
 					.catch(error => console.error('Error fetching data:', error));
 			}
@@ -464,44 +492,123 @@
 				};
 
 				if (!chart) {
-				// Nếu chưa khởi tạo, tạo mới
 				chart = new ApexCharts(document.querySelector("#activities-chart"), options);
 				chart.render();
 				} else {
-				// Nếu đã có chart, cập nhật dữ liệu
 				chart.updateOptions(options);
 				}
 			})
 			.catch(error => console.error('Lỗi khi lấy dữ liệu từ API:', error));
 		}
 
-		// Lần đầu chạy
 		fetchAndUpdateChart();
 
-		// Cập nhật mỗi 2 giây
 		setInterval(fetchAndUpdateChart, 2000);
 
-		function getLedCounts() {
-        fetch('http://localhost:3000/get_led_counts')
-            .then(response => response.json())
-            .then(data => {
+		let windDustChart;
 
-                document.getElementById('led-count').textContent = `(${data.led1Count})`;
-                document.getElementById('fan-count').textContent = `(${data.led2Count})`;
-                document.getElementById('ac-count').textContent = `(${data.led3Count})`;
-				// document.getElementById('led4-count').textContent = `(${data.led4Count})`;
-				// document.getElementById('led5-count').textContent = `(${data.led5Count})`;
-            })
-            .catch(error => {
-                console.error('Có lỗi xảy ra khi lấy dữ liệu: ', error);
-            });
-    }
+		function fetchAndUpdateWindDustChart() {
+			fetch('http://localhost:3000/get_list_new')
+				.then(response => response.json())
+				.then(data => {
+					const reversedData = data.slice().reverse();
 
-    // Gọi API khi tải trang xong
-    getLedCounts();
+					const winds = reversedData.map(item => item.wind);
+					const dusts = reversedData.map(item => item.dust);
+					const times = reversedData.map(item => {
+						const date = new Date(item.recorded_at);
+						const hours = date.getHours().toString().padStart(2, '0');
+						const minutes = date.getMinutes().toString().padStart(2, '0');
+						return `${hours}:${minutes}`;
+					});
 
-    // Gọi API sau mỗi khoảng thời gian nếu cần cập nhật liên tục (ví dụ: mỗi 5 giây)
-    setInterval(getLedCounts, 5000);
+					const options = {
+						series: [
+							{ name: "Gió (m/s)", data: winds },
+							{ name: "Bụi (µg/m³)", data: dusts }
+						],
+						chart: {
+							height: 300,
+							type: 'line',
+							zoom: { enabled: false },
+							dropShadow: {
+								enabled: true,
+								color: '#000',
+								top: 10,
+								left: 5,
+								blur: 10,
+								opacity: 0.2
+							},
+							toolbar: { show: false }
+						},
+						colors: ['#1abc9c', '#e74c3c'],
+						dataLabels: { enabled: false },
+						stroke: { width: [3, 3], curve: 'smooth' },
+						grid: { show: false },
+						markers: {
+							colors: ['#1abc9c', '#e74c3c'],
+							size: 5,
+							strokeColors: '#ffffff',
+							strokeWidth: 2,
+							hover: { sizeOffset: 2 }
+						},
+						xaxis: {
+							categories: times,
+							labels: {
+								style: { colors: '#8c9094' }
+							}
+						},
+						yaxis: {
+							labels: {
+								style: { colors: '#8c9094' }
+							}
+						},
+						legend: {
+							position: 'top',
+							horizontalAlign: 'right',
+							floating: true,
+							offsetY: 0,
+							labels: { useSeriesColors: true },
+							markers: { width: 10, height: 10 }
+						}
+					};
+
+					if (!windDustChart) {
+						windDustChart = new ApexCharts(document.querySelector("#wind-dust-chart"), options);
+						windDustChart.render();
+					} else {
+						windDustChart.updateOptions(options);
+					}
+				})
+				.catch(error => console.error('Lỗi khi lấy dữ liệu từ API:', error));
+		}
+
+		// Initial fetch and render
+		fetchAndUpdateWindDustChart();
+
+		// Set interval to fetch and update chart every 2 seconds
+		setInterval(fetchAndUpdateWindDustChart, 2000);
+
+
+	// 	function getLedCounts() {
+    //     fetch('http://localhost:3000/get_led_counts')
+    //         .then(response => response.json())
+    //         .then(data => {
+
+    //             document.getElementById('led-count').textContent = `(${data.led1Count})`;
+    //             document.getElementById('fan-count').textContent = `(${data.led2Count})`;
+    //             document.getElementById('ac-count').textContent = `(${data.led3Count})`;
+	// 			// document.getElementById('led4-count').textContent = `(${data.led4Count})`;
+	// 			// document.getElementById('led5-count').textContent = `(${data.led5Count})`;
+    //         })
+    //         .catch(error => {
+    //             console.error('Có lỗi xảy ra khi lấy dữ liệu: ', error);
+    //         });
+    // }
+
+    // getLedCounts();
+
+    // setInterval(getLedCounts, 2000);
 			</script>
 	</body>
 </html>

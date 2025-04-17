@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const mqttClient = mqtt.connect('mqtt://192.168.1.198:1889', {
+const mqttClient = mqtt.connect('mqtt://192.168.176.87:1889', {
     username: 'trinhkieutrang',
     password: 'tkt123'
 });
@@ -20,9 +20,9 @@ mqttClient.on('connect', () => {
     console.log('📡 MQTT connected!');
     mqttClient.subscribe('data/sensors', (err) => {
         if (!err) {
-            console.log('✅ Subscribed to topic: data/sensors');
+            console.log('Subscribed to topic: data/sensors');
         } else {
-            console.error('❌ Failed to subscribe:', err);
+            console.error('Failed to subscribe:', err);
         }
     });
 });
@@ -31,32 +31,33 @@ mqttClient.on('message', async (topic, message) => {
     if (topic === 'data/sensors') {
         try {
             const data = JSON.parse(message.toString());
-            const { temperature, humidity, light } = data;
+            const { temperature, humidity, light, dust, wind } = data;
 
             const sql = `
-                INSERT INTO device_data (temperature, humidity, light, recorded_at)
-                VALUES (?, ?, ?, NOW())
+                INSERT INTO device_data (temperature, humidity, light, dust, wind, recorded_at)
+                VALUES (?, ?, ?, ?, ?, NOW())
             `;
-            await pool.query(sql, [temperature, humidity, light]);
+            await pool.query(sql, [temperature, humidity, light, dust, wind]);
 
             console.log('📥 Saved data from MQTT:', data);
         } catch (error) {
-            console.error('❌ Error parsing or saving MQTT data:', error);
+            console.error('Error parsing or saving MQTT data:', error);
         }
     }
 });
 
+
 app.get("/get_latest_data", async (req, res) => {
     const [rows] = await pool.query(
-        "SELECT humidity, temperature, light FROM device_data ORDER BY recorded_at DESC LIMIT 1"
-      );
-  
-      if (rows.length === 0) {
+        "SELECT humidity, temperature, light, dust, wind FROM device_data ORDER BY recorded_at DESC LIMIT 1"
+    );
+
+    if (rows.length === 0) {
         return res.status(404).json({ message: "Không có dữ liệu" });
-      }
-  
-      res.json(rows[0]);
-  });
+    }
+
+    res.json(rows[0]);
+});
 
 
 app.get("/get_list_data", async (req, res) => {
@@ -70,6 +71,23 @@ app.get("/get_list_data", async (req, res) => {
 
     res.json(rows);
 });
+
+app.get("/get_list_new", async (req, res) => {
+    const [rows] = await pool.query(
+        `SELECT dust, wind,
+                DATE_FORMAT(recorded_at, '%Y-%m-%d %H:%i:%s') AS recorded_at
+         FROM device_data
+         ORDER BY recorded_at DESC
+         LIMIT 12`
+    );
+
+    if (rows.length === 0) {
+        return res.status(404).json({ message: "Không có dữ liệu" });
+    }
+
+    res.json(rows);
+});
+
 
 app.get("/get_sensor_data", async (req, res) => {
   try {
@@ -150,7 +168,7 @@ app.get("/get_device", async (req, res) => {
   app.get("/get_sensor_datas", async (req, res) => {
     try {
       const [rows] = await pool.query(
-        "SELECT id, humidity, temperature, light, DATE_FORMAT(recorded_at, '%Y-%m-%d %H:%i:%s') AS recorded_at FROM device_data"
+        "SELECT id, humidity, temperature, light, dust, wind, DATE_FORMAT(recorded_at, '%Y-%m-%d %H:%i:%s') AS recorded_at FROM device_data"
       );
   
       if (rows.length === 0) {
@@ -236,11 +254,11 @@ app.post('/control_led', async (req, res) => {
         // Gửi thông điệp MQTT
         await mqttClient.publish('device/control', message, (err) => {
             if (err) {
-                console.error('❌ Failed to send control message:', err);
+                console.error('Failed to send control message:', err);
                 return res.status(500).json({ message: 'Failed to control LED' });
             }
 
-            console.log(`📤 Sent LED control message: ${message}`);
+            console.log(`Sent LED control message: ${message}`);
         });
 
         // Đếm số lần bật
@@ -263,7 +281,7 @@ app.post('/control_led', async (req, res) => {
 
         await pool.query(sql, [name, status]);
 
-        console.log(`✅ Saved ${name} (${state}) to DB`);
+        console.log(`Saved ${name} (${state}) to DB`);
 
         return res.status(200).json({
             message: `LED ${led} turned ${state}`,
@@ -274,7 +292,7 @@ app.post('/control_led', async (req, res) => {
             led5Count
         });
     } catch (error) {
-        console.error('❌ Lỗi điều khiển:', error);
+        console.error('Lỗi điều khiển:', error);
         return res.status(500).json({ message: 'Không thể điều khiển thiết bị' });
     }
 });
